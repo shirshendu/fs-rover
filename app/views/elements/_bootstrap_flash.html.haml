@@ -1,0 +1,4 @@
+- flash.each do |name, msg|
+  %div{:class => "alert " + bootstrap_class_for(name.to_sym)}
+    %a.close{"data-dismiss" => "alert"} ×
+    = content_tag :div, msg.to_s, :id => "flash_#{name}" if msg.respond_to?(:to_s)
