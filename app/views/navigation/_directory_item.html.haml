@@ -1,0 +1,8 @@
+%td
+  %strong
+    - if item.listable?
+      = link_to item.relative_path, navigate_path(path: item.full_path)
+    - else
+      = item.relative_path
+%td
+%td

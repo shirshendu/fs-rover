@@ -1,1 +1,4 @@
-= "Showing #{@path}"
+- if @fs_item.directory?
+  = render 'directory', fs_item: @fs_item
+- else
+  = render 'file', fs_item: @fs_item

@@ -1,0 +1,15 @@
+.h2 #{@fs_item.full_path}
+
+.table-responsive
+  %table.table.table-striped.table-hover
+    %tr 
+      %th Name
+      %th Edit
+      %th Download
+    - @listing.each do |item|
+      %tr
+        - if item.directory?
+          = render 'directory_item', item: item
+        - else
+          = render 'file_item', item: item
+= paginate @listing, theme: 'twitter-bootstrap-3'

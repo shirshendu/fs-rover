@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   #   end
   get 'login' => 'login#new'
   post 'login' => 'login#create'
+  delete 'login' => 'login#destroy'
 
-  get 'nav/', to: 'navigation#root'
-  get 'nav/*fspath', to: 'navigation#show'
+  get 'navigate', to: 'navigation#show'
 end
