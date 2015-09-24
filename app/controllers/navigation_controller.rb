@@ -10,5 +10,8 @@ class NavigationController < ApplicationController
     end
   end
 
+  def edit
+    @file = FileItem.new params[:path]
+    redirect_to(:back) && return unless @file.editable?
   end
 end

@@ -1,6 +1,10 @@
 require 'filemagic'
 
 class FileItem < FilesystemItem
+  def content
+    read
+  end
+
   def directory?
     false
   end
@@ -16,6 +20,6 @@ class FileItem < FilesystemItem
   end
 
   def editable?
-    readable? and writable?
+    @editable ||= readable? and writable? and (!exist? || text?)
   end
 end
