@@ -1,23 +1,11 @@
 class FilesystemItem
   attr_accessor :full_path, :relative_path
-  def initialize(path, rel_path)
+  def initialize(path, rel_path=nil)
     @full_path = path
-    @relative_path = rel_path
+    @relative_path = rel_path || path
   end
 
-  def directory?
-    @directory ||= File.directory? full_path
-  end
-
-  def readable?
-    File.readable? full_path
-  end
-
-  def writable?
-    File.writable? full_path
-  end
-
-  def executable?
-    File.executable? full_path
+  def method_missing m, *args, &block
+    File.public_send m, full_path, *args, &block
   end
 end
