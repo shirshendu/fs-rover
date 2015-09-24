@@ -1,6 +1,9 @@
 class DirectoryItem < FilesystemItem
   def listing
-    Dir.entries full_path
+    Dir.entries(full_path)
+      .sort.map do |item|
+      FilesystemItemFactory.create File.join(full_path, item), item
+    end
   end
 
   def directory?
