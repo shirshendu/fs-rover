@@ -57,5 +57,5 @@ Rails.application.routes.draw do
   post 'login' => 'login#create'
   delete 'login' => 'login#destroy'
 
-  get 'navigate', to: 'navigation#show'
+  resource :navigation, controller: :navigation
 end

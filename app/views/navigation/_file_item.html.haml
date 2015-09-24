@@ -1,5 +1,6 @@
 %td= item.relative_path
 %td
   - if item.editable?
-    %i.glyphicon.glyphicon-edit
+    = link_to edit_navigation_path(path: item.full_path) do
+      %i.glyphicon.glyphicon-edit
 %td
