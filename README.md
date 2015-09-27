@@ -15,6 +15,7 @@ A simple webapp for your filesystem.
 - ActiveRecord/DB functionality has been stripped out, because this project is primarily for interaction with the filesystem
 - Backend authorization works via setting and resetting EUID of the server process to the signed-in user. This is why a process-forking model based server like unicorn is recommended for this project, instead of a threaded server such as thin/puma.
 - Read access to the signed-in user's home directory is assumed to be available, and set as the default navigation path
+- Rails asset cache (not SASS cache) is set to in-memory, because filesystem access is denied to non-server-process users (since the process drops its permissions while processing requests)
 - All exceptions related to filesystem access are caught and redirected to the home directory with error details
 - All unhandled exceptions are redirected to the login page with error details
 - In all exception cases, the EUID of the process is reset

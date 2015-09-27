@@ -26,13 +26,21 @@ module Authorization
   end
 
   def fs_error_handler(e)
+    if request.fullpath == file_path(path: current_user.dir)
+      force_logout(e.message)
+      return
+    end
     redirect_to file_path(path: current_user.dir), flash: { error: e.message }
     reset_euid
   end
 
   def error_handler(e)
+    force_logout(e.message)
+  end
+
+  def force_logout(message)
     session.delete :username
-    redirect_to login_path, flash: { error: e.message + ' - As a security measure, you have been logged out' }
+    redirect_to login_path, flash: { error: "#{message} - As a security measure, you have been logged out" }
     reset_euid
   end
 end
