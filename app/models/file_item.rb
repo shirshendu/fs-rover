@@ -10,7 +10,7 @@ class FileItem < FilesystemItem
   end
 
   def mime_type
-    @mime_type ||= FileMagic.mime.file full_path, :mime_type
+    @mime_type ||= FileMagic.mime(FileMagic::MAGIC_SYMLINK).file full_path, :mime_type
   end
 
   def text?

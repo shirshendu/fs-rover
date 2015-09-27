@@ -4,9 +4,13 @@
   - else
     = item.relative_path
 %td.text-center
+  - mode = "%o" % item.stat.mode
+  %div{ data: { toggle: 'tooltip', placement: 'left'}, title: mode }= mode[-3..-1]
+%td.text-center
   - if item.editable?
     = link_to edit_file_path(path: item.full_path) do
       %i.glyphicon.glyphicon-edit
 %td.text-center
-  = link_to file_path(path: item.full_path, download: true) do
-    %i.glyphicon.glyphicon-download
+  - if item.file?
+    = link_to file_path(path: item.full_path, download: true) do
+      %i.glyphicon.glyphicon-download
