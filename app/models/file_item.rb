@@ -15,7 +15,7 @@ class FileItem < FilesystemItem
 
   def text?
     if File.file? full_path
-      mime_type =~ /^(inode\/x-empty)|(text\/.+)$/
+      zero? || mime_type =~ /^(text\/.+)$/
     end
   end
 
