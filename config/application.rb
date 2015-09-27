@@ -30,5 +30,10 @@ module FsRover
     # config.i18n.default_locale = :de
 
     config.allow_root_login = false
+
+    # We cache in an in-memory store because cache access is denied because of the constant EUID - UID shifting we do
+    config.assets.configure do |env|
+      env.cache = ActiveSupport::Cache.lookup_store(:memory_store)
+    end
   end
 end
