@@ -3,7 +3,7 @@ class NavigationController < ApplicationController
   include PathBreadcrumbs
 
   def show
-    @path = params[:path] || Dir.home
+    @path = params[:path] || current_user.dir
     @fs_item = FilesystemItemFactory.create @path
     add_path_breadcrumbs @fs_item.dirname
     if @fs_item.directory?

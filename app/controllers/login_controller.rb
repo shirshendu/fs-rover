@@ -15,7 +15,7 @@ class LoginController < ApplicationController
     if @success
       session[:username] = credentials[:username]
       flash[:success] = 'Welcome to the FileSystem Rover'
-      redirect_to file_path(path: Dir.home)
+      redirect_to file_path(path: current_user.dir)
     else
       flash[:error] = 'Login failed'
       redirect_to login_path

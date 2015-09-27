@@ -18,7 +18,7 @@ module Authorization
   end
 
   def set_euid_to_current_user
-    Process.euid = Etc.getpwnam(current_username).uid
+    Process.euid = current_user.uid
   end
 
   def reset_euid
@@ -26,13 +26,13 @@ module Authorization
   end
 
   def fs_error_handler(e)
+    redirect_to file_path(path: current_user.dir), flash: { error: e.message }
     reset_euid
-    redirect_to file_path(path: Dir.home), flash: { error: e.message }
   end
 
   def error_handler(e)
-    reset_euid
     session.delete :username
-    redirect_to login_path, flash: { error: e.message + '- As a security measure, you have been logged out' }
+    redirect_to login_path, flash: { error: e.message + ' - As a security measure, you have been logged out' }
+    reset_euid
   end
 end
