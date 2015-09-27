@@ -5,7 +5,8 @@ module Authorization
     before_filter :check_login
     before_filter :set_euid_to_current_user
     after_filter :reset_euid
-    rescue_from FilesystemItem::Error, SystemCallError, with: :error
+    rescue_from FilesystemItem::Error, SystemCallError, with: :fs_error_handler
+    rescue_from StandardError, with: :error_handler
   end
 
   def user_signed_in?
@@ -21,12 +22,17 @@ module Authorization
   end
 
   def reset_euid
-    puts 'euid reset'
     Process.euid = Process.uid
   end
 
-  def error(e)
+  def fs_error_handler(e)
     reset_euid
     redirect_to file_path(path: Dir.home), flash: { error: e.message }
+  end
+
+  def error_handler(e)
+    reset_euid
+    delete session[:username]
+    redirect_to login_path, flash: { error: e.message + '- As a security measure, you have been logged out' }
   end
 end

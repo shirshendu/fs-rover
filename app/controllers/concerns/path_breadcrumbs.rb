@@ -7,5 +7,6 @@ module PathBreadcrumbs
       path << (filename + '/')
       add_breadcrumb filename, file_path(path: path)
     end
+    add_breadcrumb ""
   end
 end
