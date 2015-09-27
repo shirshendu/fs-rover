@@ -65,4 +65,8 @@ bundle install --path vendor/bundle # or skip the path if you like
 rbenv sudo bundle exec rails server # I use rbenv-sudo. If you have installed ruby and bundler as root, su into root and run bundle exec rails server
 ```
 
+Unicorn is recommended in production, and hence is made the default in that mode
+You can run it in development mode by
+`rbenv sudo bundle exec unicorn`
+
 If deploying in production mode, make sure to set your `SECRET_KEY_BASE` environment variable. See `config/secrets.yml`

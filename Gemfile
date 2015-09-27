@@ -29,6 +29,12 @@ gem 'bootstrap-kaminari-views'
 gem 'ruby-filemagic'
 gem 'breadcrumbs_on_rails'
 
+gem 'unicorn'
+group :production do
+  # Make unicorn default in production
+  gem 'unicorn-rails'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
