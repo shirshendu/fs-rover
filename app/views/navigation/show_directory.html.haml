@@ -1,0 +1,15 @@
+= render 'fs_path', fs_item: @fs_item
+.row.center-block
+  .table-responsive
+    %table.table.table-striped.table-hover
+      %tr 
+        %th Name
+        %th.col-md-1.text-center Edit
+        %th.col-md-1.text-center Download
+      - @listing.each do |item|
+        %tr
+          - if item.directory?
+            = render 'directory_item', item: item
+          - else
+            = render 'file_item', item: item
+= paginate @listing, theme: 'twitter-bootstrap-3'

@@ -1,0 +1,4 @@
+= simple_form_for :file, url: file_path, method: method || :post do |f|
+  = f.input :full_path, as: :hidden
+  = f.input :content, as: :text, label: file.full_path, required: false, input_html: { rows: 20 }
+  = f.submit 'Save', class: 'btn btn-primary'

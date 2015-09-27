@@ -1,6 +1,12 @@
-%td= item.relative_path
 %td
+  - if item.text?
+    = link_to item.relative_path, file_path(path: item.full_path)
+  - else
+    = item.relative_path
+%td.text-center
   - if item.editable?
-    = link_to edit_navigation_path(path: item.full_path) do
+    = link_to edit_file_path(path: item.full_path) do
       %i.glyphicon.glyphicon-edit
-%td
+%td.text-center
+  = link_to file_path(path: item.full_path, download: true) do
+    %i.glyphicon.glyphicon-download

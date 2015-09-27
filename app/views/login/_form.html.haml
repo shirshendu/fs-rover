@@ -1,4 +1,4 @@
-= simple_form_for(:login) do |f|
+= simple_form_for :login, url: login_path do |f|
   = f.input :username, placeholder: 'Username', label: false
   = f.input :password, placeholder: 'Password', label: false
-  = f.submit class: 'btn btn-primary'
+  = f.submit 'Login', class: 'btn btn-primary col-md-12'

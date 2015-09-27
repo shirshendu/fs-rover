@@ -1,4 +1,1 @@
-= simple_form_for :file, method: :put do |f|
-  = f.input :full_path, as: :hidden
-  = f.input :content, as: :text
-  = f.submit 'Save', class: 'btn btn-primary'
+= render 'form', file: @file, method: :put
