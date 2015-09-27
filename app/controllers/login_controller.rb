@@ -24,6 +24,6 @@ class LoginController < ApplicationController
 
   def destroy
     session.delete :username
-    redirect_to login_path
+    redirect_to login_path, flash: { success: 'You have been logged out' }
   end
 end
