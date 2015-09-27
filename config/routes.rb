@@ -53,9 +53,10 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  root 'login#new'
   get 'login' => 'login#new'
   post 'login' => 'login#create'
   delete 'login' => 'login#destroy'
 
-  resource :navigation, controller: :navigation
+  resource :file, controller: :navigation
 end
