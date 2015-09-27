@@ -32,7 +32,7 @@ module Authorization
 
   def error_handler(e)
     reset_euid
-    delete session[:username]
+    session.delete :username
     redirect_to login_path, flash: { error: e.message + '- As a security measure, you have been logged out' }
   end
 end

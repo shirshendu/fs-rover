@@ -4,7 +4,7 @@ A simple webapp for your filesystem.
 - Runs as root, authenticates via PAM
 - Login as root can be allowed via [configuration]('#configuration')
 - Allows browsing the filesystem
-- Permissions are shown for convenience
+- Permissions are shown for convenience (full file mode and sticky bit in the tooltip)
 - Uses File/Directory read/write permissions as defined for the system user
 - For text files with read+write permissions, allows editing in the browser
 - For all text and binary files with read permissions, allows downloading (but not for non-filetypes like `characterSpecial`, `blockSpecial`, `fifo`, `socket`, or `unknown`)
