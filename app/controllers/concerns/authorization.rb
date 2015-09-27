@@ -5,8 +5,8 @@ module Authorization
     before_filter :check_login
     before_filter :set_euid_to_current_user
     after_filter :reset_euid
-    rescue_from FilesystemItem::Error, SystemCallError, with: :fs_error_handler
     rescue_from StandardError, with: :error_handler
+    rescue_from FilesystemItem::Error, SystemCallError, with: :fs_error_handler
   end
 
   def user_signed_in?
